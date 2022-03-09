@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/devices")
+@RequestMapping("api/devices/")
 public class DeviceController {
 
     private DeviceService deviceService;
@@ -34,5 +34,18 @@ public class DeviceController {
     @GetMapping("{id}")
     public ResponseEntity<Device> getDeviceById(@PathVariable("id") long id){
         return new ResponseEntity<Device>(deviceService.getDeviceById(id), HttpStatus.OK);
+    }
+
+    //build update device by id REST API
+    @PutMapping("{id}")
+    public ResponseEntity<Device> updateDevice(@PathVariable("id") long id, @RequestBody Device device){
+        return new ResponseEntity<Device>(deviceService.updateDevice(device, id), HttpStatus.OK);
+    }
+
+    //build delete employee by id REST API
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteDevice(@PathVariable("id") long id){
+        deviceService.deleteDevice(id);
+        return new ResponseEntity<String>("Device deleted successfully!", HttpStatus.OK);
     }
 }
