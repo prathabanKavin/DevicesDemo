@@ -20,7 +20,7 @@ public class DeviceServiceImpl implements DeviceService {
 
     @Override
     public Device saveDevice(Device device) {
-        return deviceRepository.save(device);
+            return deviceRepository.save(device);
     }
 
     @Override
